@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- ========================= SECTION MAIN ========================= -->
+<head>
+    
+    
+<section class="section-intro padding-y-sm">
+<div class="container">
+
+
+</div> <!-- container //  -->
+</section>
+<!-- ========================= SECTION MAIN END// ========================= -->
+
+<!-- ========================= SECTION  ========================= -->
+<section class="section-name padding-y-sm">
+<div class="container">
+
+<header class="section-heading">
+	<a href="{% url 'store' %}" class="btn btn-outline-primary float-right">مشاهده همه</a>
+	<br>
+	<br>
+	<center><h3 class="section-title">به فروشگاه آنلاین جهان خوش آمدید</h3></center>
+</header><!-- sect-heading -->
+
+
+<div>
+    {% include "includes/slider.html" %}
+</div>	
+
+<div class="row">
+	
+	<div class="col-md-2">{% include "includes/sidebar.html" %}</div>
+	{% for product in products %}
+	<div class="col-md-3">
+		<div class="card card-product-grid">
+			<a href="{{ product.get_url }}" class="img-wrap"> <img src="{{ product.images.url }}"> </a>
+			<figcaption class="info-wrap">
+				<center><a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a></center>
+				<div class="price mt-1"> قیمت {{ product.price }}   تومان</div> <!-- price-wrap.// -->
+				<div class="rating-star">
+					<span>
+						<i class="fa fa-star{% if product.averageReview < 0.5 %}-o{% elif single_product.averageReview >= 0.5 and product.averageReview < 1 %}-half-o {% endif %}" aria-hidden="true"></i>
+						<i class="fa fa-star{% if product.averageReview < 1.5 %}-o{% elif single_product.averageReview >= 1.5 and product.averageReview < 2 %}-half-o {% endif %}" aria-hidden="true"></i>
+						<i class="fa fa-star{% if product.averageReview < 2.5 %}-o{% elif single_product.averageReview >= 2.5 and product.averageReview < 3 %}-half-o {% endif %}" aria-hidden="true"></i>
+						<i class="fa fa-star{% if product.averageReview < 3.5 %}-o{% elif single_product.averageReview >= 3.5 and product.averageReview < 4 %}-half-o {% endif %}" aria-hidden="true"></i>
+						<i class="fa fa-star{% if product.averageReview < 4.5 %}-o{% elif single_product.averageReview >= 4.5 and product.averageReview < 5 %}-half-o {% endif %}" aria-hidden="true"></i>
+						</span>
+				</div>
+			</figcaption>
+		</div>
+	</div> <!-- col.// -->
+	{% endfor %}
+
+<div class="slider">
+	{% for category in random_categories %}
+		<div class="category-slide">
+		<h2>{{ category.name }}1</h2>
+		<div class="product-list">
+			{% for product in category.product_set.all %}
+			<div class="product">{{ product.name }}</div>
+			{% endfor %}
+		</div>
+		</div>
+	{% endfor %}
+</div>
+</div><!-- container // -->
+</section>
+<!-- ========================= SECTION  END// ========================= -->
+
+</body>
+</html>
+{% endblock %}

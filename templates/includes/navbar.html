@@ -1,0 +1,185 @@
+{% load static %}
+<!--<nav class="navbar p-md-0 navbar-expand-sm navbar-light">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTop4">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a href="{% url "collections" %}" class="nav-link"> کالکشن محصولات </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="about_us.html" class="nav-link"> درباره ما</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li><a href="#" class="nav-link"> <i class="fa fa-envelope"></i> ایمیل </a></li>
+                    <li><a href="#" class="nav-link"> <i class="fa fa-phone"></i> تماس با ما </a></li>
+                </ul>
+                <br>
+            </div>
+        </div>
+    </nav>-->
+    
+    <br>
+    <nav class="header-main border-bottom">
+        <div>
+            <br>
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-md-3 col-6">
+                        <a href="{% url 'home' %}" class="brand-wrap">
+                            <img class="logo" src="{% static './images/logo.png' %}" width="150" height="130">
+                        </a>
+                    </div>
+                    <div class="col-lg col-sm col-md col-6 flex-grow-0">
+                        <div class="category-wrap dropdown d-inline-block float-right">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bars"></i> تمامی دسته بندی ها
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{% url 'store' %}">همه محصولات</a>
+                                {% for category in links %}
+                                <a class="dropdown-item" href="{{category.get_url}}">{{category.category_name}}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'store' %}" class="btn btn-outline-primary" width="30px">فروشگاه</a>
+                    <div class="col-lg  col-md-6 col-sm-12 col">
+                        <form action="{% url "search" %}" class="search" method='GET'>
+                            <div class="input-group w-100">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                                <input type="text" class="form-control" style="width:60%;" placeholder="جستجو در گالری جهان" name="keyword">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
+                        <div class="d-flex justify-content-end mb-3 mb-lg-0">
+                            {% if user.id is None %}
+                            <div class="widget-header">
+                                <small class="title text-muted">خیلی خوش اومدی</small>
+                                <div>
+                                    <a href="{% url "login" %}">ورود</a> <span class="dark-transp"> | </span>
+                                    <a href="{% url "register" %}"> ثبت نام</a>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="widget-header">
+                                <small class="title text-muted">خیلی خوش اومدی {{ user.first_name}}</small>
+                                <div>
+                                    <a href="{% url "dashboard" %}">داشبورد</a> <span class="dark-transp"> | </span>
+                                    <a href="{% url "logout" %}"> خروج</a>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <a href="{% url "cart" %}" class="widget-header pl-3 ml-3">
+                                <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
+                                <span class="badge badge-pill badge-danger notify">{{cart_count}}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--costum navbar-->
+        
+<!--<div class="col-bar navbar navbar-expand-lg navbar-light bg-light">
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav" mr-auto>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            احیا و صافی
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">کراتین</a>
+                            <a class="dropdown-item" href="#"> پروتئین</a>
+                            <a class="dropdown-item" href="#"> بوتاکس</a>
+                            <a class="dropdown-item" href="#"> پلکس</a>
+                            <a class="dropdown-item" href="#">  آنزیم تراپی</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            رنگ مو و لوازم جانبی
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">رنگ مو</a>
+                            <a class="dropdown-item" href="#">اکسیدان</a>
+                            <a class="dropdown-item" href="#">واریاسیون</a>
+                            <a class="dropdown-item" href="#">پودر دکلره</a>
+                            <a class="dropdown-item" href="#">ابزار رنگ مو</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            شامپو و ماسک
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">شامپو فری سولفات</a>
+                            <a class="dropdown-item" href="#">شامپو حاوی پیگمنت</a>
+                            <a class="dropdown-item" href="#">ماسک داخل حمام</a>
+                            <a class="dropdown-item" href="#">ماسک بیرون حمام</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            آرایش صورت
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">کرم پودر</a>
+                            <a class="dropdown-item" href="#">این صرفا آزمایش است</a>
+                            <a class="dropdown-item" href="#">رژ لب</a>
+                            <a class="dropdown-item" href="#">رژ گونه</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>-->
+        <div class="col-bar navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav" mr-auto>
+                    {% for category in categories %}
+                    <li class="nav-item dropdown">
+                        {% for category in links %}
+                            <a class="list-group-item list-group-item-action" href="{{category.get_url}}">{{category.category_name}}</a>
+                        {% endfor %}
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            {% for product in products %}
+                            {% if product.category == category %}
+                            <a class="dropdown-item" href="#">{{ product.name }}</a>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        
+    </nav>
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.querySelector('.navbar');
+            var sectionHeader = document.querySelector('.section-header');
+            if (window.pageYOffset > 0) {
+              navbar.classList.add('scrolled');
+              sectionHeader.style.opacity = 0;
+            } else {
+              navbar.classList.remove('scrolled');
+              sectionHeader.style.opacity = 1;
+            }
+          });
+          
+
+    </script>
+
+

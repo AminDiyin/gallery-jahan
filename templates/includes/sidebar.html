@@ -1,0 +1,10 @@
+<section>
+<div class="sidebar" style="text-align: right;" min-width="50px;">
+    <center><h3 >دسته بندی</h3></center>
+    <ul class="w-auto p-3">
+      {% for category in links %}
+        <a class="list-group-item list-group-item-action" href="{{category.get_url}}">{{category.category_name}}</a>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
