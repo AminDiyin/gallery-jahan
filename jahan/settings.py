@@ -104,8 +104,8 @@ DATABASES = {
         'NAME': 'galleryj_gjdb',
         'USER': 'galleryj_amindiyin',
         'PASSWORD': 'Tfmd?2025',
-        'HOST': 'localhost',  # or the hostname where your MySQL server is running
-        'PORT': '3306',      # or the port on which your MySQL server is listening
+        'HOST': 'localhost',# or the hostname where your MySQL server is running
+        'PORT': '3306',# or the port on which your MySQL server is listening
     }
 }
 
